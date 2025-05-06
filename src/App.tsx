@@ -9,9 +9,10 @@ import { initialState, orderReducer } from "./reducers/order-reducer"
 
 function App() {
 
-  const { order, tip, setTip, addItem, removeItem, placeOrder } = useOrder()
+  const { order, tip, setTip, removeItem, placeOrder } = useOrder()
 
   const [state, dispatch] = useReducer(orderReducer, initialState)
+  
   return (
     <>
       <header className="bg-teal-400 py-5">
@@ -27,7 +28,7 @@ function App() {
               <MenuItem 
                 key={item.id}
                 item={item}
-                addItem={addItem}
+                dispatch={dispatch}
               />
               
             ))}
