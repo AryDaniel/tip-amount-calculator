@@ -12,7 +12,7 @@ function App() {
   const { order, tip, setTip, removeItem, placeOrder } = useOrder()
 
   const [state, dispatch] = useReducer(orderReducer, initialState)
-  
+
   return (
     <>
       <header className="bg-teal-400 py-5">
@@ -36,10 +36,10 @@ function App() {
         </div>
         
         <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-10">
-          {order.length > 0 ? (
+          {state.order.length > 0 ? (
             <>
               <OrderContent 
-                order={order}
+                order={state.order}
                 removeItem={removeItem}
               />
 
@@ -49,7 +49,7 @@ function App() {
               />
 
               <OrderTotals
-                order={order}
+                order={state.order}
                 tip={tip}
                 placeOrder={placeOrder}
               />
