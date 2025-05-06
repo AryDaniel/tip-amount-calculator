@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch } from 'react';
+import { OrderAction } from '../reducers/order-reducer';
 
 // This array allows us to avoid repeating the radio input code multiple times.
 // We can iterate over it to dynamically render the options in the form.
@@ -21,12 +22,12 @@ const tipOptions = [
 ]
 
 type TipPercentageFormProps = {
-  setTip: Dispatch<SetStateAction<number>>,
+  dispatch: Dispatch<OrderAction>,
   tip: number
 
 }
 
-export default function TipPercentageForm({setTip, tip}: TipPercentageFormProps) {
+export default function TipPercentageForm({dispatch, tip}: TipPercentageFormProps) {
   return (
     <div>
       <h3 className="font-black text-2xl">Propina:</h3>
@@ -40,7 +41,7 @@ export default function TipPercentageForm({setTip, tip}: TipPercentageFormProps)
               type="radio"
               name="tip"
               value={tipOption.value}
-              onChange={e => setTip(+e.target.value)}
+              onChange={e => dispatch({ type: 'set-tip', payload: { tip: +e.target.value}}) }
               // Marks the radio button as checked if its value matches the selected tip amount
               checked={tipOption.value === tip}
             />
