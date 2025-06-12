@@ -53,9 +53,12 @@ export const orderReducer = (
 
     
     if(action.type === 'set-tip') {
+        const tip = action.payload.tip
         return {
             ...state,
+            tip
         }
     }
+
     return state;
 }
